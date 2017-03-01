@@ -188,7 +188,10 @@ app.factory('Cloudinary', function($timeout, $q, config){
 							$timeout(function(){
 								parent[attr] = result;
 							})
-					deferred.resolve(result)
+					if(error)
+						deferred.reject(error)
+					else
+						deferred.resolve(result)
 				});
 			}else{
 				alert('Document storage has not been setup yet.')
