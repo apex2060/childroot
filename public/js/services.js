@@ -175,10 +175,10 @@ app.factory('Cloudinary', function($timeout, $q, config){
 		upload: function(parent, attr){
 			var deferred = $q.defer();
 			attr = attr || 'images'
-			if(config.whois && config.whois.cloudinary){
+			if(config.whois && config.whois.settings && config.whois.settings.cloudinary){
 				cloudinary.openUploadWidget({
-					cloud_name: config.whois.cloudinary.name,
-					upload_preset: config.whois.cloudinary.preset,
+					cloud_name: config.whois.settings.cloudinary.name,
+					upload_preset: config.whois.settings.cloudinary.preset,
 					theme: 'white',
 					multiple: true,
 				},
