@@ -177,8 +177,8 @@ app.factory('Cloudinary', function($timeout, $q, config){
 			attr = attr || 'images'
 			if(config.whois && config.whois.cloudinary){
 				cloudinary.openUploadWidget({
-					cloud_name: config.whois.cloudinary.cloudName,
-					upload_preset: config.whois.cloudinary.uploadPreset,
+					cloud_name: config.whois.cloudinary.name,
+					upload_preset: config.whois.cloudinary.preset,
 					theme: 'white',
 					multiple: true,
 				},
