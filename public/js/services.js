@@ -175,20 +175,26 @@ app.factory('Cloudinary', function($timeout, $q, config){
 		upload: function(parent, attr){
 			var deferred = $q.defer();
 			attr = attr || 'images'
-			cloudinary.openUploadWidget({
-				cloud_name: config.cloudinary.cloudName,
-				upload_preset: config.cloudinary.uploadPreset,
-				theme: 'white',
-				multiple: true,
-			},
-			function(error, result) {
-				if(result)
-					if(parent)
-						$timeout(function(){
-							parent[attr] = result;
-						})
-				deferred.resolve(result)
-			});
+			if(config.whois && config.whois.cloudinary){
+				cloudinary.openUploadWidget({
+					cloud_name: config.whois.cloudinary.cloudName,
+					upload_preset: config.whois.cloudinary.uploadPreset,
+					theme: 'white',
+					multiple: true,
+				},
+				function(error, result) {
+					if(result)
+						if(parent)
+							$timeout(function(){
+								parent[attr] = result;
+							})
+					deferred.resolve(result)
+				});
+			}else{
+				alert('Document storage has not been setup yet.')
+				console.log('Visit: atfiliate.com to setup document storage.')
+				deferred.reject('Document Storage is not setup.')
+			}
 			return deferred.promise;
 		}
 	}
