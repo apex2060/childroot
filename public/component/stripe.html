@@ -13,6 +13,9 @@
 					<md-option ng-repeat="method in customer.sources.data" value="{{method.id}}">
 						{{method.brand}} {{method.last4}}
 					</md-option>
+					<md-option ng-click="tools.manage.add()">
+						Add Method
+					</md-option>
 				</md-select>
 			</md-input-container>
 		</div>
@@ -22,8 +25,8 @@
 		</div>
 		
 		<div>
-			<md-button ng-click="tools.manage.add()">Add Method</md-button>
-			<md-button class="md-raised pull-right" ng-click="tools.checkout.pay(cart.method)">Pay {{cart.amount}}</md-button>
+			<!--<md-button ng-click="tools.manage.add()">Add Method</md-button>-->
+			<md-button class="md-raised pull-right" ng-click="tools.checkout.pay(cart.method)" ng-disabled="!cart.method">Pay {{cart.amount}}</md-button>
 		</div>
 	</div>
 	
